@@ -1,4 +1,5 @@
 //five buttons for main functioning
+let wakebutton=document.querySelector("#wakeupapi");
 let fillbutton=document.querySelector("#fill");
 let getbutton=document.querySelector("#get");
 let editbutton=document.querySelector("#set");
@@ -29,6 +30,53 @@ let closedeletediv=document.querySelector("#closedeletebox");
 
 //api calling functions--------------------------------------------------------------------
 
+//wake button
+function awakethapi() {
+    wakebutton.innerHTML="API IS AWAKE";
+    
+    setTimeout(()=>{
+        wakebutton.innerHTML="API is sleeping to wake CLICK";
+    },900000)
+}
+
+
+////for awaking api get function
+async function awakecallit() {
+    wakebutton.innerHTML="wait..";
+    let response=await fetch("https://end-to-end-form-filling-with-database-kne8.onrender.com/apicall/get");
+    let give= await response.json();
+    showresult.innerHTML = `
+    <tr>
+    <th>ID</th>
+    <th>NAME</th>
+    <th>MOBILE</th>
+    <th>EMAIL</th>
+    <th>MESSAGE</th>
+    </tr>
+    `;
+    
+    for(let i=0;i<give.length;i++){
+        let newrow=document.createElement("tr");
+        let dataone=document.createElement("td");
+        let datatwo=document.createElement("td");
+        let datathree=document.createElement("td");
+        let datafour=document.createElement("td");
+        let datafive=document.createElement("td");
+        dataone.innerHTML=give[i].id;
+        datatwo.innerHTML=give[i].name;
+        datathree.innerHTML=give[i].mobile;
+        datafour.innerHTML=give[i].email;
+        datafive.innerHTML=give[i].message;
+        newrow.appendChild(dataone);
+        newrow.appendChild(datatwo);
+        newrow.appendChild(datathree);
+        newrow.appendChild(datafour);
+        newrow.appendChild(datafive);
+        showresult.appendChild(newrow);
+    }
+    awakethapi();
+} 
+
 //add function
 
 async function add() {
@@ -55,6 +103,7 @@ async function add() {
         normalleft();
         submitbutton.innerHTML="SUBMIT";
     },2000)
+    awakethapi();
     
 }
 
@@ -70,6 +119,7 @@ async function deleteapi(){
     });
     confirmdeletebutton.innerHTML="DONE";
     setTimeout(()=>{confirmdeletebutton.innerHTML="CONFIRM DELETE"},3000);
+    awakethapi();
 }
 
 ///// update set function
@@ -97,6 +147,7 @@ async function updateindb(){
     showemail.value="";
     showmessage.value="";
     updatebutton.innerHTML="UPDATE DETAILS";
+    awakethapi();
 }
 
 ////get function
@@ -133,6 +184,7 @@ async function callit() {
         newrow.appendChild(datafive);
         showresult.appendChild(newrow);
     }
+    awakethapi();
 } 
 
 //////normal function----------------------------------------------------------------
@@ -193,4 +245,5 @@ confirmdeletebutton.addEventListener("click",deleteapi);
 closedeletediv.addEventListener("click",closedeletebox);
 updatebutton.addEventListener("click",updateindb);
 fillbutton.addEventListener("click",normalleft);
+wakebutton.addEventListener("click",awakecallit);
 
