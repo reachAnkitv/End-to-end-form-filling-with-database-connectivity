@@ -44,7 +44,7 @@
 #indiv{
 
     padding: 5px;
-    height: 270px;
+    height: 400px;
     width: 140px;
     background-color: rgb(97, 115, 141);
     display: inline-block;
@@ -52,13 +52,13 @@
     border-radius: 10px;
 }
 /* main 4 button styles */
-#fill,#get,#set,#delete,#clr{
-    height: 30px;
-    width: 120px;
+#fill,#get,#set,#delete,#clr,#wakeupapi{
+    height: 40px;
+    width: 130px;
     margin-top: 20px;
 }
 /* button on hover style  */
-#fill:hover,#get:hover,#set:hover,#delete:hover,#clr:hover{
+#fill:hover,#get:hover,#set:hover,#delete:hover,#clr:hover,#wakeupapi:hover{
     font-size:14px;
     background-color: red;
 }
